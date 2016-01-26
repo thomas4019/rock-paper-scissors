@@ -14,8 +14,11 @@ h1 {
 .choice {
 	margin: 5px;
 }
-.choice.selected, .choice.select:hover {
-	background: green;
+.choice.selected {
+	background: #393;
+}
+.choice.selected:hover {
+	background: #3C3;
 }
 .score {
 	font-size: 30px;
