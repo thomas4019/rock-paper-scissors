@@ -1,9 +1,9 @@
 # rock-paper-scissors
-A multiplayer, realtime version rock, paper, scissors.
+A multiplayer, real-time version of [rock-paper-scissors](https://en.wikipedia.org/wiki/Rock-paper-scissors).
 
-Each round is five seconds. If you make your choice before the end of the round, other players will be able to see your choice, so don't reveal your choice too early (just like real rock paper scissors).
+Each round is five seconds. If you make your choice before the end of the round, other players will be able to see your choice, so don't reveal your choice too early (just like real rock-paper-scissors).
 
-In a game with more than two players, any players who were not attacked, get one point for each person they can attack. If everyone can be attacked, no one receives points
+Games with 3+ players: Any players who were not attacked, get one point for each person they can attack. If everyone can be attacked, no one receives points.
 
 To run:
 
