@@ -1,6 +1,7 @@
 h1 {
 	font-size: 50px;
 }
+
 .player div {
 	float: left;
 	padding: 15px;
@@ -11,6 +12,7 @@ h1 {
 .player-name.me {
 	font-weight: bold;
 }
+
 .choice {
 	margin: 5px;
 }
@@ -20,6 +22,7 @@ h1 {
 .choice.selected:hover {
 	background: #3C3;
 }
+
 .score {
 	font-size: 30px;
 }

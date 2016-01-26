@@ -7,6 +7,8 @@ var LOSES_TO = {'Rock': 'Paper', 'Paper': 'Scissors', 'Scissors': 'Rock'};
 var NUM_STEPS = 5; // Number of seconds in each round.
 
 if (Meteor.isClient) {
+
+  // Ensure there is a Player for my url, and get the Mongo database id.
   var name = window.location.pathname.substring(1);
   Meteor.subscribe('players', function() {
     if (name) {
@@ -17,17 +19,20 @@ if (Meteor.isClient) {
   });
 
   Template.body.events({
-    'mousemove': function(event) {
-      if (Session.get('myId')) {
-        PlayersList.update(Session.get('myId'), { $set: {'x': event.pageX, 'y': event.pageY } } );
-      }
-    },
     'click .choice': function(event) {
+      // Update the Player's chosen action.
+      // TODO: Ignore clicks on other players buttons.
       var action = $(event.target).text();
       PlayersList.update(Session.get('myId'), { $set: { action: action } } );
     },
     'click #reset': function() {
       Meteor.call('reset');
+    },
+    'mousemove': function(event) {
+      // Save mouse coordinates.
+      if (Session.get('myId')) {
+        PlayersList.update(Session.get('myId'), { $set: {'x': event.pageX, 'y': event.pageY } } );
+      }
     },
   });
  
@@ -62,14 +67,18 @@ if (Meteor.isServer) {
     Time.remove({});
     Time.insert({step: 0});
   });
+
   Meteor.publish('players', function() {
     return PlayersList.find();
   });
+
   Meteor.methods({
     reset: function() {
+      // We do this on the server, because a client can only modify one document at a time.
       PlayersList.update({}, { $set : { score : 0 } }, {multi: true});
     }
   });
+
   Meteor.setInterval(function() {
     var lastStep = Time.findOne().step;
     if (lastStep == (NUM_STEPS - 1)) {
