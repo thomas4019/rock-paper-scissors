@@ -1,0 +1,35 @@
+<head>
+  <title>Rock Paper Scissors</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="rock-paper-scissors.css">
+</head>
+
+<body>
+  <h1>Rock Paper Scissors</h1>
+
+  {{#each players}}
+ 	{{> player}}
+  {{/each}}
+
+  {{#each otherPlayers}}
+  	{{> cursor}}
+  {{/each}}
+
+  <h2 style="clear: both;">Countdown: {{getMessage}}</h2>
+
+  <div id="reset" class="btn btn-warning">Reset Scores</div>
+</body>
+
+<template name="cursor">
+	<img src="cursor.png" style="position: absolute; left: {{x}}px; top: {{y}}px;">
+</template>
+
+<template name="player">
+  <div class="player" style="clear: both;">
+  	<div class="player-name {{getPlayerClass _id}}">{{name}}</div>
+  	<div class="btn btn-default choice {{getActionClass action 'Rock'}}">Rock</div>
+  	<div class="btn btn-default choice {{getActionClass action 'Paper'}}">Paper</div>
+  	<div class="btn btn-default choice {{getActionClass action 'Scissors'}}">Scissors</div>
+  	<div class="score">Score: {{score}}</div>
+  </div>
+</template>
